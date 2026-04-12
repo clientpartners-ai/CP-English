@@ -178,6 +178,76 @@ font-family: 'grandam';
 
 ---
 
+## 🌐 関連サイトURL
+
+| サイト | URL | 備考 |
+|---|---|---|
+| 英語サイト（新） | `https://www.clientpartners.jp/english/` | MT上で運用中（未一般公開） |
+| 英語サイト（旧） | `http://clientpartners.planet.bindcloud.jp/index.html` | かなり古い。移行元の参考用 |
+| 日本語サイト | `https://www.clientpartners.jp/` | 本体HP。英語版の翻訳元 |
+| STUDIOデザイン参考 | `https://violet871175.studio.site/` | カラー・レイアウトの参考 |
+| MT管理画面 | `https://cms.clientpartners.jp/mt/admin` | テンプレート編集・再構築 |
+
+---
+
+## 🤖 TeamAgent 運用ルール
+
+### ブランチ運用
+- `main` ブランチに直接プッシュしない
+- 作業は必ずフィーチャーブランチで行い、PRベースで管理する
+- ブランチ名: `feature/変更内容` または指定されたブランチ名
+
+### 作業前の必須手順
+1. **CLAUDE.md の内容を全部読む**
+2. **assets/css/style.css の内容を確認する**
+3. **templates/ の各ファイルを確認する**
+
+### 作業後の必須手順
+1. 変更内容をコミット（明確なコミットメッセージ）
+2. リモートにプッシュ
+3. 必要に応じてPR作成
+
+### やっていいこと
+- テンプレートHTMLの修正・新規作成
+- CSSの追加（既存クラスと重複しない新しいクラス名で）
+- CLAUDE.md の未完了タスクの消化
+- コンテンツのタイポ修正・翻訳改善
+
+### やってはいけないこと
+- 既存CSSクラスの上書き（⚠️ CSS管理の注意事項セクション参照）
+- `grandam` フォントをセクションタイトルに使う（筆記体のため）
+- 機密情報のコミット（ただし公式サイト掲載済みの公開情報は可）
+- MTテンプレート構文の変更（`<$mt:setvar...>` の書き方を守る）
+- main ブランチへの直接プッシュ
+
+---
+
+## 📋 作業指示パターン
+
+### CSS修正を頼む場合
+```
+CLAUDE.md を読んだ上で、
+assets/css/style.css の .section-title のフォントを
+Noto Sans JP に変更してください。
+変更後はコミット・プッシュしてください。
+```
+
+### 新しいページを作る場合
+```
+CLAUDE.md を読んだ上で、
+templates/ に新しい terms.html（利用規約ページ）を作成してください。
+既存の privacy-policy.html のスタイルに合わせてください。
+作成後はコミット・プッシュしてください。
+```
+
+### リポジトリのクローン方法
+ClaudeCodeが自動でクローンしますが、手動で指示する場合：
+```
+git clone https://github.com/clientpartners-ai/CP-English.git
+```
+
+---
+
 ## 📌 未完了タスク
 
 - [ ] 全ページに実際の画像を追加
@@ -188,3 +258,4 @@ font-family: 'grandam';
 - [ ] Access ページの地図埋め込み
 - [ ] モバイル表示の最終確認
 - [ ] ニュースページ（後日対応予定）
+- [ ] リポジトリの公開設定見直し（Public → Private の検討）
