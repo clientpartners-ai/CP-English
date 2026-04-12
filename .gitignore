@@ -1,0 +1,25 @@
+# 作業用ファイル（GitHubにプッシュしない）
+*_webpage.html
+*_styles.css
+additional_pages_styles.css
+access_services_styles.css
+ok_grandma_privacy_styles.css
+contact_page_styles.css
+existing_style.css
+
+# 重複ファイル
+contact_page_english.html
+access_page.html
+rent_a_family_page.html
+rent_a_friend_page.html
+ok_grandma_page.html
+privacy_policy_page.html
+privacy_policy_webpage.html
+ok_grandma_webpage.html
+contact_webpage.html
+layout_module_STUDIO_CSS.html
+style_updated_studio.css
+
+# OS
+.DS_Store
+Thumbs.db
