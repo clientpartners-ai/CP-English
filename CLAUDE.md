@@ -49,6 +49,8 @@
 | `Rent-a-Friend` | `english/rent-a-friend.html` | 友人代行 |
 | `OK Grandma` | `english/ok-grandma.html` | おばあちゃん代行 |
 | `Privacy Policy` | `english/privacy-policy.html` | プライバシーポリシー |
+| `News` | `english/news.html` | ニュース・お知らせ |
+| `Terms of Service` | `english/terms.html` | 利用規約 |
 
 ---
 
@@ -257,5 +259,7 @@ git clone https://github.com/clientpartners-ai/CP-English.git
 - [ ] Rent-a-Friend ページの詳細コンテンツ確認
 - [ ] Access ページの地図埋め込み
 - [ ] モバイル表示の最終確認
-- [ ] ニュースページ（後日対応予定）
+- [x] ニュースページ作成済み（コンテンツは後日追加）
+- [x] 利用規約ページ作成済み
+- [x] トップページ（index.html）テンプレート作成済み
 - [ ] リポジトリの公開設定見直し（Public → Private の検討）
