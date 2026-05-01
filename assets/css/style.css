@@ -1921,3 +1921,38 @@ textarea.form-control {
     padding-bottom: 80px;
   }
 }
+
+/* =========================================
+   TOP Page Layout Improvements
+   ========================================= */
+
+/* Service cards: 5枚でも綺麗に並ぶよう3列固定 */
+.services__grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 1024px) {
+  .services__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .services__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Head Office セクションの余白改善 */
+.access__offices {
+  margin: 80px 0;
+}
+
+.access__office-images {
+  margin-bottom: 60px;
+}
+
+/* Hero CONTACTボタンの位置調整（上に寄せる） */
+.btn--studio-orange {
+  bottom: -40px;
+}
