@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  
+
   <!-- SEO Meta Tags -->
   <title><$mt:var name="title"$></title>
   <meta name="description" content="<$mt:var name="description"$>">
   <link rel="canonical" href="<$mt:var name="canonical"$>">
-  
+
   <!-- OGP Meta Tags -->
   <meta property="og:title" content="<$mt:var name="title"$>">
   <meta property="og:description" content="<$mt:var name="description"$>">
@@ -17,27 +17,28 @@
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://www.clientpartners.jp/english/main-top.webp">
   <meta property="og:site_name" content="Client Partners">
-  
+
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="<$mt:var name="title"$>">
   <meta name="twitter:description" content="<$mt:var name="description"$>">
   <meta name="twitter:image" content="https://www.clientpartners.jp/english/main-top.webp">
-  
+
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="/english/favicon.png">
-  
+  <link rel="icon" type="image/png" href="/english/rogo.png">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Noto+Sans+JP:wght@400;500&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
   <!-- Material Icons -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
+
   <!-- Stylesheets -->
-  <mt:IndexLink template="[CSS] style.css">
+  <link rel="stylesheet" type="text/css" href="/english/assets/css/style.css?v=2">
   <link rel="stylesheet" type="text/css" href="/english/assets/css/animations.css">
-  
+
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -77,12 +78,12 @@
 
     <nav class="site-header__nav">
       <ul>
-        <li><a href="/english/#aboutus">About us</a></li>
+        <li><a href="/english/about.html">About us</a></li>
         <li><a href="/english/rent-a-friend.html">Rent-a-Friend</a></li>
         <li><a href="/english/rent-a-family.html">Rent-a-Family</a></li>
-        <li><a href="/english/ok-grandma.html">OK Grandma</a></li>
+    	<li><a href="/english/ok-grandma.html">OK Grandma</a></li>
         <li><a href="/english/access.html">Access</a></li>
-        <li><a href="/english/news.html">News</a></li>
+        <!-- <li><a href="/english/news.html">News</a></li> -->
       </ul>
     </nav>
 
@@ -105,12 +106,12 @@
 <!-- Mobile Navigation -->
 <nav class="mobile-nav" id="mobileNav">
   <ul>
-    <li><a href="/english/#aboutus">About us</a></li>
+    <li><a href="/english/about.html">About us</a></li>
     <li><a href="/english/rent-a-friend.html">Rent-a-Friend</a></li>
     <li><a href="/english/rent-a-family.html">Rent-a-Family</a></li>
     <li><a href="/english/ok-grandma.html">OK Grandma</a></li>
     <li><a href="/english/access.html">Access</a></li>
-    <li><a href="/english/news.html">News</a></li>
+    <!-- <li><a href="/english/news.html">News</a></li> -->
     <li><a href="/english/contact.html">Contact</a></li>
   </ul>
 </nav>
@@ -128,7 +129,7 @@
         <div class="site-footer__logo">ClientPartners</div>
         <p>The Women-only Handymen in JAPAN</p>
       </div>
-      
+
       <div class="site-footer__nav">
         <div>
           <h4>Services</h4>
@@ -139,34 +140,38 @@
             <li><a href="/english/ok-grandma.html">OK Grandma</a></li>
           </ul>
         </div>
-        
+
         <div>
           <h4>Company</h4>
           <ul>
-            <li><a href="/english/#aboutus">About Us</a></li>
+            <li><a href="/english/about.html">About Us</a></li>
             <li><a href="/english/access.html">Access</a></li>
-            <li><a href="/english/news.html">News</a></li>
+            <!-- <li><a href="/english/news.html">News</a></li> -->
             <li><a href="/english/contact.html">Contact</a></li>
+            <li><a href="/english/privacy-policy.html">Privacy Policy</a></li>
           </ul>
         </div>
-        
+
         <div>
-          <h4>Legal</h4>
+          <h4>   </h4>
           <ul>
-            <li><a href="/english/privacy-policy.html">Privacy Policy</a></li>
-            <li><a href="/english/terms.html">Terms of Service</a></li>
+
+            <!-- <li><a href="/english/terms.html">Terms of Service</a></li> -->
           </ul>
         </div>
       </div>
     </div>
-    
+
     <div class="site-footer__bottom">
       <div class="site-footer__copyright">
         &copy; 2017 Client Partners All Rights Reserved.
       </div>
-      
-      <div class="site-footer__lang">
-        <a href="/">Japanese Site</a>
+
+      <div>
+        <a href="/" class="site-footer__lang">
+            <span>Japanese Site</span>
+            <span class="material-icons">open_in_new</span>
+          </a>
       </div>
     </div>
   </div>

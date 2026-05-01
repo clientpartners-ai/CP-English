@@ -37,12 +37,14 @@
 | テンプレート名 | 役割 |
 |---|---|
 | `En 共通レイアウト` | ヘッダー・フッター・HTML共通部分 |
+| `En 料金` | 料金セクション（各サービスページから読み込み） |
 
 ### インデックステンプレート
 | テンプレート名 | 出力ファイル | 説明 |
 |---|---|---|
 | `[CSS] style.css` | `english/assets/css/style.css` | メインCSS |
 | `En トップページ` | `english/index.html` | トップページ |
+| `About Us` | `english/about.html` | 会社紹介・ビジョン |
 | `Contact` | `english/contact.html` | お問い合わせ |
 | `Access` | `english/access.html` | アクセス |
 | `Rent-a-Family` | `english/rent-a-family.html` | 家族代行 |
