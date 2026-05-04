@@ -1592,7 +1592,7 @@ textarea.form-control {
 }
 
 .branch-list li::before {
-  content: '●';
+  content: '\25CF';
   position: absolute;
   left: 0;
   color: var(--primary-orange);
