@@ -69,15 +69,15 @@
    HAMBURGER MENU ANIMATION
    ======================================== */
 
-#nav-toggle.active span:nth-child(1) {
+#hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
 
-#nav-toggle.active span:nth-child(2) {
+#hamburger.active span:nth-child(2) {
   opacity: 0;
 }
 
-#nav-toggle.active span:nth-child(3) {
+#hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
@@ -88,7 +88,7 @@
     top: 70px;
     left: 0;
     right: 0;
-    background: var(--white);
+    background: #fff;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     transform: translateY(-100%);
     opacity: 0;

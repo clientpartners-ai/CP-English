@@ -112,10 +112,10 @@
 
   function initFadeInAnimation() {
     const animateElements = document.querySelectorAll(`
-      .about-section,
+      .about,
       .service-card,
       .cta-box,
-      .access-section,
+      .access,
       .office-card
     `);
 
