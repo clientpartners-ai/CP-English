@@ -11,6 +11,8 @@
 | `style.css` | 【CSS】style.css |
 | `animations.css` | 【CSS】animations.css |
 | `main_enhanced.js` | 【JS】main_enhanced.js |
+| `index.html` | English Top Page |
+| `access.html` | Access |
 
 ## 使い方（ロールバック手順）
 
@@ -22,5 +24,6 @@ MT管理画面の対応テンプレートに全文貼り付け → 保存 → �
 
 - この状態には既知のバグが含まれています（steps-grid衝突、フォント
   二重読み込み、#nav-toggle不一致 など）。恒久運用には使わないこと。
-- テンプレートHTML（トップページ・Access等）のバックアップは
-  git履歴のコミット `8bd8805` 時点を参照。
+- Contact / About Us / Rent-a-Friend / Rent-a-Family / OK Grandma /
+  Privacy Policy / En 料金 のバックアップは git履歴のコミット
+  `8bd8805` 時点の templates/ を参照。
