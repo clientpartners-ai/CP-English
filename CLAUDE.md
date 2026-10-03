@@ -53,6 +53,7 @@
 | `Privacy Policy` | `english/privacy-policy.html` | プライバシーポリシー |
 | `News` | `english/news.html` | ニュース・お知らせ |
 | `Terms of Service` | `english/terms.html` | 利用規約 |
+| `【JS】chatbot.js` | `english/assets/js/chatbot.js` | FAQチャットボット（シナリオ型） |
 
 ---
 
