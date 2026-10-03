@@ -53,7 +53,9 @@
 | `Privacy Policy` | `english/privacy-policy.html` | プライバシーポリシー |
 | `News` | `english/news.html` | ニュース・お知らせ |
 | `Terms of Service` | `english/terms.html` | 利用規約 |
-| `【JS】chatbot.js` | `english/assets/js/chatbot.js` | FAQチャットボット（シナリオ型） |
+| `【JS】chatbot.js` | `english/assets/js/chatbot.js` | FAQチャットボット（シナリオ型・共通エンジン） |
+
+※ チャットボットは `window.CP_CHATBOT_CONFIG` を先に定義すると他サイト（日本語HP・なんデジ等）でも使い回せる。設定サンプル: `examples/chatbot-config-ja.sample.js`
 
 ---
 

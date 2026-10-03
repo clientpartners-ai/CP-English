@@ -1,34 +1,63 @@
 /* ========================================
-   Client Partners English Site - FAQ Chatbot
+   Client Partners - FAQ Chatbot Engine
    Scripted FAQ bot: quick-reply buttons + keyword matching.
    Self-contained: injects its own styles. No server, no API.
 
-   * 回答内容の編集方法
-   下の CHATBOT_DATA を書き換えるだけでOKです。
+   * 他サイトでの使い回し方（日本語サイト・なんデジ等）
+   このファイルはそのまま共通エンジンとして使えます。
+   読み込む前に window.CP_CHATBOT_CONFIG を定義すると、
+   文言・回答・連絡先・色をサイトごとに差し替えられます。
+   （定義しない場合は英語サイト用のデフォルトで動作）
+
+   例:
+   <script>
+   window.CP_CHATBOT_CONFIG = {
+     title: 'クライアントパートナーズ',
+     subtitle: 'よくあるご質問',
+     color: '#FFAB00',
+     contactUrl: '/contact/',
+     phoneDisplay: '03-5909-2320',
+     phoneTel: 'tel:03-5909-2320',
+     placeholder: 'ご質問を入力...',
+     data: { greeting: ..., fallback: ..., initialTopics: [...], topics: [...], smalltalk: [...] }
+   };
+   </script>
+   <script src="/path/to/chatbot.js"></script>
+
+   設定サンプル: リポジトリの examples/chatbot-config-ja.sample.js
+
+   * 英語サイトの回答内容の編集方法
+   下の DEFAULT_DATA を書き換えるだけでOKです。
    - label   : ボタンに表示される文字
    - keywords: 入力文からこの話題を検出する単語（小文字）
-   - answer  : 回答本文（HTML可）。リンクは <a href="..."> で
+   - answer  : 回答本文（HTML可）
    - suggest : 回答後に出す関連ボタン（他トピックのid）
    ======================================== */
 
 (function () {
   'use strict';
 
-  var CONTACT_URL = '/english/contact.html';
-  var PHONE_DISPLAY = '03-5909-2320';
-  var PHONE_TEL = 'tel:03-5909-2320';
+  var USER = (typeof window !== 'undefined' && window.CP_CHATBOT_CONFIG) ? window.CP_CHATBOT_CONFIG : {};
 
-  /* ============ EDIT HERE: FAQ DATA ============ */
+  var COLOR = USER.color || '#FFAB00';
+  var TITLE = USER.title || 'Client Partners';
+  var SUBTITLE = USER.subtitle || 'FAQ Assistant';
+  var PLACEHOLDER = USER.placeholder || 'Type your question...';
+  var CONTACT_URL = USER.contactUrl || '/english/contact.html';
+  var PHONE_DISPLAY = USER.phoneDisplay || '03-5909-2320';
+  var PHONE_TEL = USER.phoneTel || 'tel:03-5909-2320';
 
-  var CHATBOT_DATA = {
+  /* ============ DEFAULT DATA (English site) ============ */
+
+  var DEFAULT_DATA = {
     greeting:
-      'Hello! Welcome to Client Partners \u2014 the Women-only Handymen in Japan. ' +
+      'Hello! Welcome to Client Partners, the Women-only Handymen in Japan. ' +
       'How can I help you today?',
     fallback:
-      'Sorry, I don\u2019t have an answer for that yet. ' +
-      'Our team is happy to help you directly \u2014 please use our ' +
+      'Sorry, I do not have an answer for that yet. ' +
+      'Our team is happy to help you directly. Please use our ' +
       '<a href="' + CONTACT_URL + '">contact form</a> or call us at ' +
-      '<a href="' + PHONE_TEL + '">' + PHONE_DISPLAY + '</a> (10:00\u201323:00).',
+      '<a href="' + PHONE_TEL + '">' + PHONE_DISPLAY + '</a> (10:00-23:00).',
     initialTopics: ['services', 'pricing', 'booking', 'locations', 'human'],
     topics: [
       {
@@ -93,7 +122,7 @@
         answer:
           'Our basic charge is: travel expenses from 3,000 yen + basic charge from ' +
           '3,000 yen/hour (excl. tax). The final price depends on location, time and ' +
-          'content \u2014 please <a href="' + CONTACT_URL + '">contact us</a> for a quote. ' +
+          'content, so please <a href="' + CONTACT_URL + '">contact us</a> for a quote. ' +
           'PayPal prepayment is available.',
         suggest: ['payment', 'booking', 'human']
       },
@@ -126,7 +155,7 @@
         keywords: ['office', 'location', 'where', 'tokyo', 'osaka', 'kobe', 'fukuoka', 'shinjuku', 'hours', 'open', 'address', 'map'],
         answer:
           'We have main offices in Tokyo (Shinjuku), Osaka (Umeda), Kobe (Sannomiya) ' +
-          'and Fukuoka (Tenjin). Reception hours: 10:00\u201323:00. The first 30 minutes ' +
+          'and Fukuoka (Tenjin). Reception hours: 10:00-23:00. The first 30 minutes ' +
           'of consultation at our Tokyo head office is free. ' +
           'See the <a href="/english/access.html">Access page</a> for maps and details.',
         suggest: ['booking', 'human']
@@ -136,7 +165,7 @@
         label: 'English support',
         keywords: ['english', 'language', 'japanese', 'speak', 'languages', 'chinese', 'korean'],
         answer:
-          'Yes \u2014 we have staff who speak English and other languages. Please note ' +
+          'Yes, we have staff who speak English and other languages. Please note ' +
           'that an English-speaking staff member may not always be available by phone, ' +
           'so for inquiries in English we recommend the ' +
           '<a href="' + CONTACT_URL + '">contact form</a>.',
@@ -160,7 +189,7 @@
         answer:
           'Of course! You can reach our team here:<br>' +
           '・ <a href="' + CONTACT_URL + '">Contact form</a> (recommended for English)<br>' +
-          '・ Phone: <a href="' + PHONE_TEL + '">' + PHONE_DISPLAY + '</a> (10:00\u201323:00)<br>' +
+          '・ Phone: <a href="' + PHONE_TEL + '">' + PHONE_DISPLAY + '</a> (10:00-23:00)<br>' +
           '・ Email: <a href="mailto:cp.otoiawase@gmail.com">cp.otoiawase@gmail.com</a>',
         suggest: []
       }
@@ -173,13 +202,22 @@
       {
         keywords: ['thank', 'thanks', 'arigato'],
         answer:
-          'You\u2019re very welcome! If you have any other questions, just ask \u2014 ' +
+          'You are very welcome! If you have any other questions, just ask, ' +
           'or feel free to <a href="' + CONTACT_URL + '">contact our team</a> anytime.'
       }
     ]
   };
 
-  /* ============ END OF FAQ DATA ============ */
+  /* ============ END OF DEFAULT DATA ============ */
+
+  var CHATBOT_DATA = USER.data || DEFAULT_DATA;
+
+  var ICON_CHAT =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+    '<path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>';
+  var ICON_SEND =
+    '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' +
+    '<path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>';
 
   var STYLE_CSS =
     '.cp-chat-panel{position:fixed;bottom:100px;right:24px;width:360px;max-width:calc(100vw - 32px);' +
@@ -187,7 +225,7 @@
     'box-shadow:0 12px 40px rgba(0,0,0,0.22);display:none;flex-direction:column;overflow:hidden;' +
     'z-index:950;font-family:"Noto Sans JP",-apple-system,sans-serif;}' +
     '.cp-chat-panel.cp-open{display:flex;}' +
-    '.cp-chat-header{background:#FFAB00;color:#fff;padding:14px 18px;display:flex;' +
+    '.cp-chat-header{background:' + COLOR + ';color:#fff;padding:14px 18px;display:flex;' +
     'align-items:center;justify-content:space-between;}' +
     '.cp-chat-header strong{font-size:15px;font-weight:700;}' +
     '.cp-chat-header small{display:block;font-size:11px;font-weight:400;opacity:.9;}' +
@@ -198,21 +236,29 @@
     'font-size:13.5px;line-height:1.7;word-wrap:break-word;}' +
     '.cp-msg-bot{background:#fff;color:#333;border-bottom-left-radius:4px;' +
     'box-shadow:0 1px 4px rgba(0,0,0,0.06);}' +
-    '.cp-msg-user{background:#FFAB00;color:#fff;margin-left:auto;border-bottom-right-radius:4px;}' +
-    '.cp-msg-bot a{color:#FFAB00;font-weight:600;text-decoration:underline;}' +
+    '.cp-msg-user{background:' + COLOR + ';color:#fff;margin-left:auto;border-bottom-right-radius:4px;}' +
+    '.cp-msg-bot a{color:' + COLOR + ';font-weight:600;text-decoration:underline;}' +
     '.cp-quick{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 12px;}' +
-    '.cp-quick button{background:#fff;border:1px solid #FFAB00;color:#FFAB00;border-radius:50px;' +
-    'padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;}' +
-    '.cp-quick button:hover{background:#FFAB00;color:#fff;}' +
+    '.cp-quick button{background:#fff;border:1px solid ' + COLOR + ';color:' + COLOR + ';border-radius:50px;' +
+    'padding:7px 14px;font-size:12.5px;font-weight:600;cursor:pointer;transition:all .2s;font-family:inherit;}' +
+    '.cp-quick button:hover{background:' + COLOR + ';color:#fff;}' +
     '.cp-chat-input{display:flex;border-top:1px solid #eee;background:#fff;}' +
     '.cp-chat-input input{flex:1;border:none;padding:14px 16px;font-size:14px;outline:none;' +
     'font-family:inherit;}' +
-    '.cp-chat-input button{background:none;border:none;color:#FFAB00;cursor:pointer;' +
+    '.cp-chat-input button{background:none;border:none;color:' + COLOR + ';cursor:pointer;' +
     'padding:0 18px;display:flex;align-items:center;}' +
     '.cp-chat-launcher{display:flex;}' +
+    '.cp-chat-launcher svg{display:block;}' +
+    '.cp-chat-launcher-solo{position:fixed;bottom:24px;right:24px;z-index:940;' +
+    'display:inline-flex;align-items:center;gap:8px;background:' + COLOR + ';color:#fff;' +
+    'padding:14px 22px;border-radius:50px;font-weight:700;font-size:14px;' +
+    'box-shadow:0 4px 16px rgba(0,0,0,0.2);cursor:pointer;text-decoration:none;' +
+    'font-family:"Noto Sans JP",-apple-system,sans-serif;transition:transform .2s;}' +
+    '.cp-chat-launcher-solo:hover{transform:translateY(-2px);}' +
     '@media (max-width:768px){' +
     '.cp-chat-panel{right:0;left:0;bottom:56px;width:100%;max-width:100%;border-radius:16px 16px 0 0;' +
     'height:70vh;max-height:70vh;}' +
+    '.cp-chat-launcher-solo{bottom:16px;right:16px;}' +
     '}';
 
   function el(tag, cls, html) {
@@ -245,15 +291,18 @@
       }
     }
     if (best) return { answer: best.answer, suggest: best.suggest };
-    for (var s = 0; s < CHATBOT_DATA.smalltalk.length; s++) {
-      var st = CHATBOT_DATA.smalltalk[s];
-      for (var k2 = 0; k2 < st.keywords.length; k2++) {
-        if (t.indexOf(st.keywords[k2]) !== -1) {
-          return { answer: st.answer, suggest: CHATBOT_DATA.initialTopics };
+    var st = CHATBOT_DATA.smalltalk || [];
+    for (var s = 0; s < st.length; s++) {
+      for (var k2 = 0; k2 < st[s].keywords.length; k2++) {
+        if (t.indexOf(st[s].keywords[k2]) !== -1) {
+          return { answer: st[s].answer, suggest: CHATBOT_DATA.initialTopics };
         }
       }
     }
-    return { answer: CHATBOT_DATA.fallback, suggest: ['services', 'pricing', 'human'] };
+    return {
+      answer: CHATBOT_DATA.fallback,
+      suggest: CHATBOT_DATA.fallbackSuggest || CHATBOT_DATA.initialTopics
+    };
   }
 
   function init() {
@@ -264,7 +313,14 @@
     /* Panel */
     var panel = el('div', 'cp-chat-panel');
     var header = el('div', 'cp-chat-header');
-    header.appendChild(el('div', '', '<strong>Client Partners</strong><small>FAQ Assistant</small>'));
+    var titleBox = el('div', '');
+    var titleEl = document.createElement('strong');
+    titleEl.textContent = TITLE;
+    var subtitleEl = document.createElement('small');
+    subtitleEl.textContent = SUBTITLE;
+    titleBox.appendChild(titleEl);
+    titleBox.appendChild(subtitleEl);
+    header.appendChild(titleBox);
     var closeBtn = el('button', 'cp-chat-close', '&times;');
     closeBtn.setAttribute('aria-label', 'Close chat');
     header.appendChild(closeBtn);
@@ -276,8 +332,8 @@
     var inputWrap = el('div', 'cp-chat-input');
     var input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = 'Type your question...';
-    var sendBtn = el('button', '', '<span class="material-icons">send</span>');
+    input.placeholder = PLACEHOLDER;
+    var sendBtn = el('button', '', ICON_SEND);
     sendBtn.setAttribute('aria-label', 'Send');
     inputWrap.appendChild(input);
     inputWrap.appendChild(sendBtn);
@@ -295,7 +351,8 @@
         for (var i = 0; i < suggest.length; i++) {
           (function (topic) {
             if (!topic) return;
-            var b = el('button', '', topic.label);
+            var b = el('button', '');
+            b.textContent = topic.label;
             b.addEventListener('click', function () {
               userSay(topic.label);
               setTimeout(function () {
@@ -349,10 +406,20 @@
       if (e.key === 'Escape') closePanel();
     });
 
-    /* Launcher: add a CHAT button into the floating CTA bar if present */
+    /* Launcher:
+       - 英語サイト: 既存のフローティングCTAに CHAT ボタンを追加
+       - 他サイト  : 単独の丸ボタンを右下に表示（CSSは自前なので依存なし） */
     var cta = document.querySelector('.floating-cta');
-    var launcher = el('a', 'floating-cta__btn floating-cta__btn--phone cp-chat-launcher',
-      '<span class="material-icons">chat</span><span class="floating-cta__label">CHAT</span>');
+    var launcher;
+    var label = USER.launcherLabel || 'CHAT';
+    if (cta) {
+      launcher = el('a', 'floating-cta__btn floating-cta__btn--phone cp-chat-launcher',
+        ICON_CHAT + '<span class="floating-cta__label">' + label + '</span>');
+      cta.insertBefore(launcher, cta.firstChild);
+    } else {
+      launcher = el('a', 'cp-chat-launcher-solo', ICON_CHAT + '<span>' + label + '</span>');
+      document.body.appendChild(launcher);
+    }
     launcher.href = 'javascript:void(0)';
     launcher.setAttribute('role', 'button');
     launcher.setAttribute('aria-label', 'Open chat assistant');
@@ -363,15 +430,6 @@
         openPanel();
       }
     });
-    if (cta) {
-      cta.insertBefore(launcher, cta.firstChild);
-    } else {
-      launcher.style.position = 'fixed';
-      launcher.style.bottom = '32px';
-      launcher.style.right = '24px';
-      launcher.style.zIndex = '900';
-      document.body.appendChild(launcher);
-    }
   }
 
   if (document.readyState === 'loading') {
