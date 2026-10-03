@@ -55,7 +55,7 @@
 | `Terms of Service` | `english/terms.html` | 利用規約 |
 | `【JS】chatbot.js` | `english/assets/js/chatbot.js` | FAQチャットボット（シナリオ型・共通エンジン） |
 
-※ チャットボットは `window.CP_CHATBOT_CONFIG` を先に定義すると他サイト（日本語HP・なんデジ等）でも使い回せる。設定サンプル: `examples/chatbot-config-ja.sample.js`
+※ チャットボットは `window.CP_CHATBOT_CONFIG` を先に定義すると他サイト（日本語HP・なんデジ等）でも使い回せる。日本語サイト用設定（本番可・内容確認済み）: `examples/chatbot-config-ja.js`
 
 ---
 
